@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for entry in entries %}
+                {% if entry.shares and entry.shares != 0 %}
+                <tr>
+                    <td> {{entry.symbol}} </td>
+                    <td> {{entry.name}} </td>
+                    <td> {{entry.shares}} </td>
+                    <td> {{entry.price | usd}} </td>
+                    <td> {{entry.total | usd}} </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+
+            {% for user in users %}
+            <tr>
+                <td> CASH </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{user.cash | usd}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4"></td>
+                <td><b>$10,000.00</b></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
